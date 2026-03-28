@@ -6,6 +6,18 @@ import { HelmetProvider } from 'react-helmet-async';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 
+// ✅ GA4: Page view tracker hook (tracks every React Router navigation)
+import usePageTracking from './hooks/usePageTracking';
+
+/**
+ * RouteTracker must be rendered INSIDE <Router> so it can use useLocation.
+ * It fires a GA4 page_view event on every route change.
+ */
+const RouteTracker = () => {
+  usePageTracking();
+  return null; // Renders nothing — it only runs the tracking side-effect
+};
+
 // Lazy Loaded Pages
 const Home = lazy(() => import('./pages/Home'));
 const ToolsPage = lazy(() => import('./pages/ToolsPage'));
@@ -25,6 +37,8 @@ function App() {
   return (
     <HelmetProvider>
       <Router>
+        {/* ✅ GA4: RouteTracker must be inside Router to access useLocation */}
+        <RouteTracker />
         <div className="flex flex-col min-h-screen">
           <Navbar />
           
