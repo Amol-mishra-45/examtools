@@ -1,10 +1,19 @@
+import { useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { blogPosts } from '../data/blogs';
 import SEO from '../components/SEO';
+import { trackBlogOpen } from '../utils/analytics';
 
 export default function BlogDetail() {
   const { id } = useParams();
   const post = blogPosts.find((p) => p.id === id);
+
+  // ✅ GA4: Track blog post open (fires once when the post loads)
+  useEffect(() => {
+    if (post) {
+      trackBlogOpen(post.title, post.id);
+    }
+  }, [post]);
 
   if (!post) {
     return (

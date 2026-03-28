@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { allTools } from '../data/tools';
 import ResizeImage from '../components/tools/ResizeImage';
@@ -11,10 +12,18 @@ import CGPACalculator from '../components/tools/CGPACalculator';
 import BackgroundRemover from '../components/tools/BackgroundRemover';
 import SEO from '../components/SEO';
 import TrustBadge from '../components/TrustBadge';
+import { trackToolClick } from '../utils/analytics';
 
 export default function ToolDetail() {
   const { id } = useParams();
   const tool = allTools.find((t) => t.id === id);
+
+  // ✅ GA4: Track tool page visit (fires once when the tool loads)
+  useEffect(() => {
+    if (tool) {
+      trackToolClick(tool.title, tool.id);
+    }
+  }, [tool]);
 
   if (!tool) {
     return (
