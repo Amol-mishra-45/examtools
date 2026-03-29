@@ -1,19 +1,24 @@
 # ============================================================
-# robots.txt for ExamTools.in
-# https://examtools.in
+
+# robots.txt for ExamTools (Vercel Deployment)
+
+# https://examtoolsin.vercel.app
+
 # ============================================================
 
-# Allow all search engine crawlers
 User-agent: *
 Allow: /
 
-# Block access to source files and build artifacts
+# Block unnecessary folders
+
 Disallow: /src/
 Disallow: /.env
 Disallow: /node_modules/
 
-# Sitemap location
-Sitemap: https://examtools.in/sitemap.xml
+# Correct Sitemap URL (VERY IMPORTANT)
 
-# Crawl-delay hint (optional — Googlebot ignores this, but Bing respects it)
+Sitemap: https://examtoolsin.vercel.app/sitemap.xml
+
+# Optional (ignored by Google, used by Bing)
+
 # Crawl-delay: 10
