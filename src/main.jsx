@@ -16,7 +16,7 @@ console.log(
   'color:#94a3b8; font-size:11px;'
 );
 
-console.log("updated version 1.1");
+console.log("updated version 1.2");
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
