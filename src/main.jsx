@@ -16,6 +16,8 @@ console.log(
   'color:#94a3b8; font-size:11px;'
 );
 
+console.log("updated version");
+
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <App />
