@@ -1,8 +1,23 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import tailwindcss from '@tailwindcss/vite'
+/**
+ * © 2026 Amol Mishra (CodeCraftAmol). All rights reserved.
+ * vite.config.js — ExamTools.in build configuration
+ */
 
-// https://vite.dev/config/
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import tailwindcss from '@tailwindcss/vite';
+
 export default defineConfig({
-  plugins: [react(), tailwindcss()],
-})
+  plugins: [
+    react(),
+    tailwindcss(),
+  ],
+
+  build: {
+    // Target modern browsers — smaller output, no legacy polyfills needed
+    target: 'es2020',
+
+    // Warn if any chunk exceeds 600KB
+    chunkSizeWarningLimit: 600,
+  },
+});

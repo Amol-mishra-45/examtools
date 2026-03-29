@@ -62,7 +62,7 @@ export default function About() {
             <div className="bg-slate-900/40 dark:bg-slate-800/40 p-6 rounded-2xl border border-slate-700 dark:border-slate-800 hover:bg-slate-900/60 dark:hover:bg-slate-800/60 transition-colors">
               <h3 className="font-bold text-lg mb-2 text-green-400">Secure & Private</h3>
               <p className="text-slate-300 font-medium leading-relaxed">
-                We know exam documents are sensitive. Files are processed fast and instantly wiped from our temporary servers.
+                We know exam documents are sensitive. All files are processed entirely in your browser and never leave your device — no uploads, no servers, no risk.
               </p>
             </div>
             <div className="bg-slate-900/40 dark:bg-slate-800/40 p-6 rounded-2xl border border-slate-700 dark:border-slate-800 hover:bg-slate-900/60 dark:hover:bg-slate-800/60 transition-colors">

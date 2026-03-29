@@ -1,3 +1,8 @@
+/**
+ * © 2026 Amol Mishra (CodeCraftAmol). All rights reserved.
+ * Website: https://examtools.in
+ * Unauthorized copying or reuse of this file is strictly prohibited.
+ */
 import { Link } from 'react-router-dom';
 import SearchBar from '../components/SearchBar';
 import ToolCard from '../components/ToolCard';
@@ -10,11 +15,22 @@ export default function Home() {
 
   return (
     <main className="bg-[#f8fafc] dark:bg-slate-900 min-h-screen pb-16 transition-colors duration-300">
-      <SEO 
-        title="Home"
-        description="Simplify your exam preparation with fast, secure, and professional tools for students to resize photos, and compress PDFs."
-        keywords="resize image to 50kb, compress pdf for ssc form, online free tool, exam preparation, free web tools"
+      <SEO
+        title="ExamTools.in – Free Exam Preparation Tools for Indian Students"
+        description="Free online tools for Indian students: resize passport photo to 50KB, compress PDF for SSC forms, merge PDFs, remove image background, and calculate CGPA. 100% free, no upload required."
+        keywords="resize image to 50kb, compress pdf for ssc form, passport photo resize online free, merge pdf free india, cgpa to percentage calculator, exam tools for students india, free online student tools"
         url="https://examtools.in"
+        jsonLd={{
+          '@context': 'https://schema.org',
+          '@type': 'WebPage',
+          '@id': 'https://examtools.in/#webpage',
+          url: 'https://examtools.in/',
+          name: 'ExamTools.in – Free Exam Preparation Tools for Indian Students',
+          description: 'Free online tools for Indian students: resize passport photo, compress PDF, merge PDFs, remove background, and calculate CGPA.',
+          breadcrumb: { '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Home', item: 'https://examtools.in/' }] },
+          isPartOf: { '@id': 'https://examtools.in/#website' },
+          inLanguage: 'en-IN',
+        }}
       />
       {/* ── Hero Section ─────────────────────────────────────── */}
       <section className="bg-gradient-to-br from-blue-50 via-white to-blue-50 dark:from-slate-800 dark:via-slate-900 dark:to-slate-800 py-24 px-6 text-center border-b border-gray-100 dark:border-slate-800 relative overflow-hidden transition-colors duration-300">

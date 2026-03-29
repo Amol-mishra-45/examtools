@@ -28,7 +28,7 @@ export default function ToolDetail() {
   if (!tool) {
     return (
       <div className="text-center py-32 px-6 w-full flex-grow transition-colors duration-300">
-        <SEO title="404 - Tool Not Found" />
+        <SEO title="404 - Tool Not Found" noIndex={true} />
         <div className="text-7xl mb-6">🔧</div>
         <h2 className="text-3xl font-extrabold text-slate-800 dark:text-white tracking-tight transition-colors">Tool Not Found</h2>
         <p className="text-slate-500 dark:text-slate-400 mt-3 font-medium text-lg transition-colors">We couldn't locate this tool in our database.</p>
@@ -41,6 +41,21 @@ export default function ToolDetail() {
       </div>
     );
   }
+
+  // Build SoftwareApplication JSON-LD for Google:
+  const toolJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    name: tool.seoTitle || tool.title,
+    description: tool.seoDescription || tool.description,
+    url: `https://examtools.in/tools/${tool.id}`,
+    applicationCategory: 'WebApplication',
+    operatingSystem: 'All',
+    offers: { '@type': 'Offer', price: '0', priceCurrency: 'INR' },
+    author: { '@type': 'Organization', name: 'ExamTools.in', url: 'https://examtools.in' },
+    inLanguage: 'en-IN',
+    keywords: tool.seoKeywords,
+  };
 
   const renderInteractiveTool = () => {
     switch (tool.id) {
@@ -75,11 +90,12 @@ export default function ToolDetail() {
 
   return (
     <main className="max-w-4xl mx-auto px-6 py-16 transition-colors duration-300">
-      <SEO 
-        title={tool.title} 
-        description={tool.description} 
-        keywords={tool.seoKeywords || "online free tool, exam prep"} 
-        url={`https://examtools.in/tools/${tool.id}`} 
+      <SEO
+        title={tool.seoTitle || tool.title}
+        description={tool.seoDescription || tool.description}
+        keywords={tool.seoKeywords || 'online free tool, exam prep india'}
+        url={`https://examtools.in/tools/${tool.id}`}
+        jsonLd={toolJsonLd}
       />
 
       {/* Breadcrumb */}

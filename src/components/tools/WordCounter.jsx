@@ -42,8 +42,8 @@ export default function WordCounter() {
       await navigator.clipboard.writeText(text);
       setCopySuccess(true);
       setTimeout(() => setCopySuccess(false), 2000);
-    } catch (err) {
-      console.error('Failed to copy text: ', err);
+    } catch {
+      // Copy failed silently — clipboard may be unavailable
     }
   };
 

@@ -25,10 +25,10 @@ export default function ToolsPage() {
 
   return (
     <main className="max-w-6xl mx-auto px-6 py-16 transition-colors duration-300">
-      <SEO 
-        title="All Useful Tools"
-        description="Search through our free suite of tools including signature resizers, PDF mergers, and photo scalers for secure exam form submissions."
-        keywords="resize image to 50kb, compress pdf for ssc form, free online toolkit, merge pdf"
+      <SEO
+        title="All Free Online Tools – PDF, Image, CGPA & Text Tools"
+        description="Browse all free online tools: resize photo to 50KB, compress PDF below 100KB, merge PDFs, convert image formats, remove background, count words, and calculate CGPA. No login, no upload."
+        keywords="free online tools india, resize image to 50kb free, compress pdf for ssc form, merge pdf free, cgpa calculator, word counter online, image converter free, students tools india"
         url="https://examtools.in/tools"
       />
       {/* Header */}

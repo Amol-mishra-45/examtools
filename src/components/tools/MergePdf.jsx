@@ -59,8 +59,7 @@ export default function MergePdf() {
       
       setMergedPdf(optimizedFile);
       setSuccess('Your PDFs have been merged successfully! Your files are processed securely in your browser. No upload required.');
-    } catch (err) {
-      console.error(err);
+    } catch {
       setError('Failed to merge PDFs. One of them may be password-protected or corrupted.');
     } finally {
       setLoading(false);

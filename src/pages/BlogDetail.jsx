@@ -18,7 +18,7 @@ export default function BlogDetail() {
   if (!post) {
     return (
       <div className="text-center py-32 px-6 w-full flex-grow transition-colors duration-300">
-        <SEO title="404 - Post Not Found" />
+        <SEO title="404 - Post Not Found" noIndex={true} />
         <div className="text-7xl mb-6">📝</div>
         <h2 className="text-3xl font-extrabold text-slate-800 dark:text-white tracking-tight transition-colors">Post Not Found</h2>
         <p className="text-slate-500 dark:text-slate-400 mt-3 font-medium text-lg transition-colors">We couldn't locate this blog post in our database.</p>
@@ -32,6 +32,36 @@ export default function BlogDetail() {
     );
   }
 
+  // Build Article JSON-LD schema for Google
+  const articleJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: post.seoTitle || post.title,
+    description: post.seoDescription || post.excerpt,
+    author: { '@type': 'Organization', name: 'ExamTools.in', url: 'https://examtools.in' },
+    publisher: { '@type': 'Organization', name: 'ExamTools.in', url: 'https://examtools.in', logo: { '@type': 'ImageObject', url: 'https://examtools.in/favicon.svg' } },
+    datePublished: post.publishDate || post.date,
+    dateModified: post.publishDate || post.date,
+    url: `https://examtools.in/blog/${post.id}`,
+    mainEntityOfPage: { '@type': 'WebPage', '@id': `https://examtools.in/blog/${post.id}` },
+    inLanguage: 'en-IN',
+    keywords: post.seoKeywords,
+  };
+
+  const FaqBlock = ({ faqs }) => (
+    <div className="mt-12">
+      <h2 className="text-2xl font-bold text-slate-800 dark:text-white mt-10 mb-6">Frequently Asked Questions (FAQs)</h2>
+      <div className="space-y-4">
+        {faqs.map((faq, i) => (
+          <div key={i} className="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700">
+            <h3 className="font-bold text-slate-800 dark:text-white text-lg mb-2">Q: {faq.q}</h3>
+            <p className="font-medium text-slate-600 dark:text-slate-300">{faq.a}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+
   const renderContent = () => {
     switch (post.id) {
       case 'passport-photo-resize':
@@ -41,10 +71,10 @@ export default function BlogDetail() {
               Applying for an exam, passport, or visa? A common stumbling block is getting your passport photo to the exact right size. In this beginner-friendly guide, we'll walk you through everything you need to know about standard passport dimensions, file sizes, and how to master it in seconds.
             </p>
 
-            <h2 className="text-2xl font-bold text-slate-800 dark:text-white mt-10 mb-4">1. Standard Passport Photo Sizes</h2>
+            <h2 className="text-2xl font-bold text-slate-800 dark:text-white mt-10 mb-4">1. Standard Passport Photo Sizes for Indian Exams</h2>
             <p className="font-medium">Sizes can vary slightly depending on what you are applying for, but here are the most common standards:</p>
             <ul className="list-disc pl-6 space-y-2 font-medium">
-              <li><strong className="text-slate-800 dark:text-slate-200">Indian Form Standard:</strong> Typically 3.5 cm x 4.5 cm.</li>
+              <li><strong className="text-slate-800 dark:text-slate-200">Indian Exam Forms (SSC/UPSC/IBPS):</strong> Typically 3.5 cm x 4.5 cm, file size 20KB–50KB.</li>
               <li><strong className="text-slate-800 dark:text-slate-200">General / US Standard:</strong> 2 x 2 inches (51 x 51 mm).</li>
               <li><strong className="text-slate-800 dark:text-slate-200">Background:</strong> Usually a plain white or light-colored background is required.</li>
             </ul>
@@ -73,11 +103,16 @@ export default function BlogDetail() {
               <li><strong>Wrong Dimensions:</strong> Never squish or stretch your face to fit into a dimension box. Crop it proportionately instead.</li>
             </ul>
 
+            <FaqBlock faqs={[
+              { q: 'What is the correct photo size for SSC exam forms?', a: 'SSC forms require your photo to be 3.5cm × 4.5cm at 100 DPI, and the file size must be between 20KB and 50KB in JPG or JPEG format.' },
+              { q: 'Can I resize my passport photo on my mobile phone?', a: 'Yes! Our Resize Image tool works directly in your mobile browser — just open the tool, upload your photo, and download the resized version instantly without any app.' },
+              { q: 'What happens if I upload a blurry photo?', a: 'A blurry photo may cause your application to be rejected during document verification. Always ensure the photo is clear and well-lit before compressing it.' },
+            ]} />
             <div className="mt-12 p-8 bg-gradient-to-br from-blue-50 to-blue-100/50 dark:from-blue-900/20 dark:to-blue-800/10 border border-blue-200 dark:border-blue-800/50 rounded-3xl shadow-sm">
-              <h3 className="text-2xl font-bold text-blue-800 dark:text-blue-300 mb-3">Make It Easy: Use Our Free Resizer Tool</h3>
-              <p className="text-blue-700/80 dark:text-blue-400/80 font-medium mb-6 text-lg">Don't want to deal with complex software? You can resize, crop, and compress your photo to exactly 50KB or below right here on ExamTools.in.</p>
+              <h3 className="text-2xl font-bold text-blue-800 dark:text-blue-300 mb-3">Resize Your Passport Photo to 50KB Instantly</h3>
+              <p className="text-blue-700/80 dark:text-blue-400/80 font-medium mb-6 text-lg">Don't want to deal with complex software? Resize, crop, and compress your passport photo to exactly 50KB for any government form right here on ExamTools.in — completely free.</p>
               <Link to="/tools/resize-image-50kb" className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-3.5 px-8 rounded-xl transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5">
-                Try Image Resizer Tool →
+                Try Free Image Resizer →
               </Link>
             </div>
           </div>
@@ -116,11 +151,16 @@ export default function BlogDetail() {
               <li><strong>Maintain Aspect Ratio:</strong> Never horizontally stretch or vertically compress your signature. Crop it uniformly instead.</li>
             </ul>
 
+            <FaqBlock faqs={[
+              { q: 'What size should my signature be for government exam forms?', a: 'Most government exam portals require the signature to be under 20KB, typically in JPG format. The physical area should be around 3.5cm × 1.5cm (140×60 pixels at 96 DPI).' },
+              { q: 'Can I use a mobile phone to scan and resize my signature?', a: 'Yes. Use your phone camera or a scanning app to capture the signature, then use our Signature Resizer tool directly in your browser to compress it to under 20KB.' },
+              { q: 'Will the signature look different after resizing?', a: 'Our tool minimizes quality loss. As long as the original scan is clear with good contrast (dark ink on white paper), the resized signature will remain sharp and legible.' },
+            ]} />
             <div className="mt-12 p-8 bg-gradient-to-br from-purple-50 to-purple-100/50 dark:from-purple-900/20 dark:to-purple-800/10 border border-purple-200 dark:border-purple-800/50 rounded-3xl shadow-sm">
-              <h3 className="text-2xl font-bold text-purple-800 dark:text-purple-300 mb-3">Make It Easy: Use Our Free Signature Resizer</h3>
-              <p className="text-purple-700/80 dark:text-purple-400/80 font-medium mb-6 text-lg">Don't want to use complicated photo editing software? You can resize, crop, and compress your signature to exactly 20KB or 50KB securely right here on ExamTools.in.</p>
+              <h3 className="text-2xl font-bold text-purple-800 dark:text-purple-300 mb-3">Compress Your Signature to 20KB Free</h3>
+              <p className="text-purple-700/80 dark:text-purple-400/80 font-medium mb-6 text-lg">No complicated software needed. Resize your scanned signature to exactly 20KB for any exam portal right here on ExamTools.in — private, free, and instant.</p>
               <Link to="/tools/resize-signature-20kb" className="inline-block bg-purple-600 hover:bg-purple-700 text-white font-bold py-3.5 px-8 rounded-xl transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5">
-                Try Signature Resizer Tool →
+                Try Free Signature Resizer →
               </Link>
             </div>
           </div>
@@ -158,9 +198,14 @@ export default function BlogDetail() {
               <li><strong>Exceeding Size Limit:</strong> Once merged, the combined file might exceed standard form limits (like 2 MB). You may need to run it through a basic PDF optimizer afterward.</li>
             </ul>
 
+            <FaqBlock faqs={[
+              { q: 'Is there a limit on how many PDFs I can merge?', a: 'Our tool supports merging multiple PDFs in one session. For best performance, we recommend keeping the total combined size under 20MB.' },
+              { q: 'Will merging PDFs affect the quality of my documents?', a: 'No. Our tool uses PDF-lib to combine files without re-encoding or compressing the content, so text and image quality remain exactly the same in the merged output.' },
+              { q: 'Does the merged PDF work on all devices?', a: 'Yes. The resulting PDF is a standard ISO-compliant file that opens perfectly on Windows, macOS, Android, iOS, and any PDF viewer.' },
+            ]} />
             <div className="mt-12 p-8 bg-gradient-to-br from-orange-50 to-orange-100/50 dark:from-orange-900/20 dark:to-orange-800/10 border border-orange-200 dark:border-orange-800/50 rounded-3xl shadow-sm">
-              <h3 className="text-2xl font-bold text-orange-800 dark:text-orange-300 mb-3">Make It Easy: Use Our PDF Merge Tool</h3>
-              <p className="text-orange-700/80 dark:text-orange-400/80 font-medium mb-6 text-lg">Safely combine multiple PDFs fully within your browser without worrying about data tracking. Arrange, compile, and download your single sequence PDF completely free here on ExamTools.in.</p>
+              <h3 className="text-2xl font-bold text-orange-800 dark:text-orange-300 mb-3">Merge Your PDFs for Free – No Upload Required</h3>
+              <p className="text-orange-700/80 dark:text-orange-400/80 font-medium mb-6 text-lg">Combine your marksheets, certificates, and ID proofs into a single PDF safely within your browser. Arrange, merge, and download instantly — completely free on ExamTools.in.</p>
               <Link to="/tools/merge-pdf-free" className="inline-block bg-orange-600 hover:bg-orange-700 text-white font-bold py-3.5 px-8 rounded-xl transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5">
                 Try Free PDF Merge Tool →
               </Link>
@@ -207,11 +252,16 @@ export default function BlogDetail() {
               <li><strong className="text-slate-800 dark:text-slate-200">Mixing SGPA with CGPA:</strong> SGPA is specifically for one single semester. CGPA is cumulative over the course. Don't multiply your semester SGPA by 9.5 and pass it off as your final degree percentage.</li>
             </ul>
 
+            <FaqBlock faqs={[
+              { q: 'What multiplier does Mumbai University use for CGPA to percentage?', a: 'Mumbai University uses the formula: Percentage = (7.1 × SGPA) + 11. This formula is official and printed on the back of your marksheet for verification.' },
+              { q: 'Is SGPA and CGPA the same thing?', a: 'No. SGPA (Semester Grade Point Average) is your score for a single semester. CGPA (Cumulative Grade Point Average) is the average across all completed semesters in your degree.' },
+              { q: 'Which CGPA to percentage multiplier should I use for job applications?', a: 'For most Indian job portals and government applications, use the 9.5 multiplier (CBSE standard). However, always check the individual company or university requirement — some accept 10× as the multiplier.' },
+            ]} />
             <div className="mt-12 p-8 bg-gradient-to-br from-indigo-50 to-indigo-100/50 dark:from-indigo-900/20 dark:to-indigo-800/10 border border-indigo-200 dark:border-indigo-800/50 rounded-3xl shadow-sm">
-              <h3 className="text-2xl font-bold text-indigo-800 dark:text-indigo-300 mb-3">Make It Easy: Use Our Native CGPA Calculator</h3>
-              <p className="text-indigo-700/80 dark:text-indigo-400/80 font-medium mb-6 text-lg">Don't want to calculate exact decimals manually? Our tool handles standard 9.5 multipliers, 10-point multipliers, and custom university formulas flawlessly right inside your browser.</p>
+              <h3 className="text-2xl font-bold text-indigo-800 dark:text-indigo-300 mb-3">Calculate Your CGPA to Percentage Instantly</h3>
+              <p className="text-indigo-700/80 dark:text-indigo-400/80 font-medium mb-6 text-lg">No manual calculations needed. Our CGPA Calculator supports Mumbai University, CBSE, and custom university formulas — get your accurate percentage in seconds.</p>
               <Link to="/tools/cgpa-to-percentage" className="inline-block bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3.5 px-8 rounded-xl transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5">
-                Try CGPA Calculator Tool →
+                Try Free CGPA Calculator →
               </Link>
             </div>
           </div>
@@ -253,11 +303,16 @@ export default function BlogDetail() {
               <li><strong>Replacing with Textures:</strong> Never replace a background with a "texture" like brick or wallpaper! Stick to pure pure-white (#FFFFFF).</li>
             </ul>
 
+            <FaqBlock faqs={[
+              { q: 'Does government exam software accept photos with AI-removed backgrounds?', a: 'Yes, as long as the background is pure white (#FFFFFF) and the photo meets the required size and dimension constraints. The exam portal does not check how the background was removed.' },
+              { q: 'What photo format should I use after background removal?', a: 'Save as JPG for most government and exam portals. JPG has smaller file sizes and is accepted universally. Use PNG only if the form explicitly requires it.' },
+              { q: 'Can I use this tool for an Aadhaar or PAN card photo?', a: 'Our tool is designed for removing backgrounds from standard portrait photos. It works well for government ID photo requirements, but always verify the output meets the official specifications.' },
+            ]} />
             <div className="mt-12 p-8 bg-gradient-to-br from-pink-50 to-pink-100/50 dark:from-pink-900/20 dark:to-pink-800/10 border border-pink-200 dark:border-pink-800/50 rounded-3xl shadow-sm">
-              <h3 className="text-2xl font-bold text-pink-800 dark:text-pink-300 mb-3">Make It Easy: Use Our Native Background Remover</h3>
-              <p className="text-pink-700/80 dark:text-pink-400/80 font-medium mb-6 text-lg">Tired of stressing whether your photo conforms to strict official constraints? Drop your photo into our AI-powered tool natively to instantly rip away messy environments mapping pure white uniformly.</p>
+              <h3 className="text-2xl font-bold text-pink-800 dark:text-pink-300 mb-3">Get a White Background for Your Photo — Free</h3>
+              <p className="text-pink-700/80 dark:text-pink-400/80 font-medium mb-6 text-lg">Remove your photo background and apply pure white instantly. Perfect for passport photos, ID cards, and exam application forms — AI-powered and browser-based on ExamTools.in.</p>
               <Link to="/tools/remove-image-bg" className="inline-block bg-pink-600 hover:bg-pink-700 text-white font-bold py-3.5 px-8 rounded-xl transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5">
-                Try Background Remover Tool →
+                Try Free Background Remover →
               </Link>
             </div>
           </div>
@@ -299,12 +354,17 @@ export default function BlogDetail() {
             <h2 className="text-2xl font-bold text-slate-800 dark:text-white mt-10 mb-4">Conclusion</h2>
             <p className="font-medium">Reducing your PDF size for SSC forms doesn't have to be a headache. By scanning smartly in black and white, cropping out empty space, and using the right online tool, you can get your application submitted flawlessly on the very first try.</p>
 
+            <FaqBlock faqs={[
+              { q: 'What is the maximum PDF size allowed for SSC forms?', a: 'SSC CGL and CHSL typically allow a maximum of 100KB for scanned documents like marksheets and certificates. The photo and signature have separate limits (usually 50KB and 20KB).' },
+              { q: 'Why does my PDF get blurry after compression?', a: 'Heavy compression removes image data to reduce size. To avoid blurriness, scan documents in grayscale mode at 150 DPI instead of color at 300 DPI — this gives smaller files without visible quality loss.' },
+              { q: 'Can I compress a PDF that already has a password?', a: 'No. Password-protected PDFs cannot be edited or compressed until the password is removed. Remove the password first using an online PDF unlock tool, then compress it.' },
+            ]} />
             <div className="mt-12 p-8 bg-gradient-to-br from-red-50 to-red-100/50 dark:from-red-900/20 dark:to-red-800/10 border border-red-200 dark:border-red-800/50 rounded-3xl shadow-sm">
-              <h3 className="text-2xl font-bold text-red-800 dark:text-red-300 mb-3">Make It Easy: Use Our Basic PDF Optimizer (Frontend)</h3>
-              <p className="text-red-700/80 dark:text-red-400/80 font-medium mb-4 text-lg">Struggling to manually shrink file sizes? Drop your PDF into our tool right here on ExamTools.in. Because it's a frontend tool, your files are processed safely and instantly in your browser with <strong>No Uploads</strong> required.</p>
-              <p className="text-red-600/80 dark:text-red-500/80 font-medium mb-6 text-sm italic">Note: For heavy compression or PDFs involving photos, server-side processing is typically required. Try our image compression tools first for better results if your PDF contains photos.</p>
+              <h3 className="text-2xl font-bold text-red-800 dark:text-red-300 mb-3">Compress Your PDF Below 100KB Free</h3>
+              <p className="text-red-700/80 dark:text-red-400/80 font-medium mb-4 text-lg">Struggling to meet the SSC upload size limit? Drop your PDF into our free tool. It processes entirely in your browser — your documents stay private with <strong>No Uploads</strong> required.</p>
+              <p className="text-red-600/80 dark:text-red-500/80 font-medium mb-6 text-sm italic">Note: For very heavy PDFs with photos, try compressing the images first using our Image Resizer, then use this tool for the final optimization.</p>
               <Link to="/tools/compress-pdf-100kb" className="inline-block bg-red-600 hover:bg-red-700 text-white font-bold py-3.5 px-8 rounded-xl transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5">
-                Try Basic PDF Optimizer →
+                Try Free PDF Optimizer →
               </Link>
             </div>
           </div>
@@ -517,11 +577,14 @@ export default function BlogDetail() {
 
   return (
     <article className="max-w-4xl mx-auto px-6 py-16 transition-colors duration-300">
-      <SEO 
-        title={post.title} 
-        description={post.excerpt} 
+      <SEO
+        title={post.seoTitle || post.title}
+        description={post.seoDescription || post.excerpt}
         keywords={post.seoKeywords}
-        url={`https://examtools.in/blog/${post.id}`} 
+        url={`https://examtools.in/blog/${post.id}`}
+        type="article"
+        articleDate={post.publishDate}
+        jsonLd={articleJsonLd}
       />
 
       {/* Breadcrumb */}

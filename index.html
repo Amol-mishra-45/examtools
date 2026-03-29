@@ -1,25 +1,104 @@
+<!--
+  ============================================================
+  ExamTools.in
+  © 2026 Amol Mishra (CodeCraftAmol). All rights reserved.
+  Unauthorized copying, reproduction, or reuse of this code
+  is strictly prohibited. See /terms for full legal notice.
+  Contact: support@examtools.in
+  ============================================================
+-->
 <!doctype html>
 <html lang="en">
   <head>
-    <!-- ✅ Google Analytics (GA4) - Measurement ID: G-M9KFW0TMKN -->
-    <!-- Load the gtag.js library asynchronously so it never blocks page render -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- ✅ Primary SEO Meta Tags -->
+    <title>ExamTools.in | Free Exam Preparation Tools for Students</title>
+    <meta name="description" content="Free online tools for Indian students: resize passport photo to 50KB, compress PDF for SSC forms, merge PDFs, convert images, calculate CGPA and more. 100% free, secure, no upload." />
+    <meta name="keywords" content="resize image to 50kb, compress pdf for ssc form, passport photo resize online, merge pdf free, cgpa to percentage calculator, exam tools india, free student tools" />
+    <meta name="author" content="Amol Mishra (CodeCraftAmol) — examtools.in" />
+    <meta name="copyright" content="© 2026 Amol Mishra. All rights reserved." />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#2563eb" />
+    <link rel="canonical" href="https://examtools.in/" />
+
+    <!-- ✅ Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="ExamTools.in" />
+    <meta property="og:url" content="https://examtools.in/" />
+    <meta property="og:title" content="ExamTools.in | Free Exam Preparation Tools for Students" />
+    <meta property="og:description" content="Free online tools for Indian students: resize passport photo to 50KB, compress PDF for SSC forms, merge PDFs, convert images, and calculate CGPA. 100% free & secure." />
+    <meta property="og:image" content="https://examtools.in/og-image.png" />
+    <meta property="og:image:alt" content="ExamTools.in - Free Exam Preparation Tools" />
+    <meta property="og:locale" content="en_IN" />
+
+    <!-- ✅ Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@examtoolsin" />
+    <meta name="twitter:title" content="ExamTools.in | Free Exam Preparation Tools for Students" />
+    <meta name="twitter:description" content="Free online tools for Indian students: resize photo to 50KB, compress PDF for SSC, merge PDFs, and more. 100% free & private." />
+    <meta name="twitter:image" content="https://examtools.in/og-image.png" />
+
+    <!-- ✅ Favicon & App Icons -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/favicon.svg" />
+
+    <!-- ✅ Preconnect for Performance -->
+    <link rel="preconnect" href="https://www.googletagmanager.com" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+
+    <!-- ✅ Google Fonts: Inter for premium typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+    <!-- ✅ Google Analytics (GA4) - loads async, never blocks render -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-M9KFW0TMKN"></script>
     <script>
-      // Initialize the dataLayer queue and the gtag() function
       window.dataLayer = window.dataLayer || [];
       function gtag(){ dataLayer.push(arguments); }
       gtag('js', new Date());
-
-      // Configure GA4 with your Measurement ID
-      // send_page_view: false → we will manually send page views from React Router
-      gtag('config', 'G-M9KFW0TMKN');
+      gtag('config', 'G-M9KFW0TMKN', { send_page_view: false });
     </script>
-    <!-- End Google Analytics -->
 
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>exam-tools</title>
+    <!-- ✅ JSON-LD Structured Data: Website + Organization -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "@id": "https://examtools.in/#website",
+          "url": "https://examtools.in/",
+          "name": "ExamTools.in",
+          "description": "Free online tools for Indian students to resize photos, compress PDFs, merge documents, and calculate CGPA for exam form submissions.",
+          "inLanguage": "en-IN",
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://examtools.in/tools?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+          }
+        },
+        {
+          "@type": "Organization",
+          "@id": "https://examtools.in/#organization",
+          "name": "ExamTools.in",
+          "url": "https://examtools.in/",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://examtools.in/favicon.svg"
+          },
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "contactType": "customer support",
+            "email": "support@examtools.in"
+          },
+          "sameAs": []
+        }
+      ]
+    }
+    </script>
   </head>
   <body>
     <div id="root"></div>

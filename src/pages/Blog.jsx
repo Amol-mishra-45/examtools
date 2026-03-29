@@ -5,10 +5,10 @@ import SEO from '../components/SEO';
 export default function Blog() {
   return (
     <main className="max-w-6xl mx-auto px-6 py-16 transition-colors duration-300">
-      <SEO 
-        title="Exam Guides & Tips Blog"
-        description="Everything you need to know about resizing photos, compressing PDFs, and submitting forms perfectly."
-        keywords="resize image to 50kb guide, how to compress pdf for ssc form, online free tool tutorials"
+      <SEO
+        title="Free Exam Guides & Tips – PDF, Photo Resize, CGPA Help"
+        description="Step-by-step guides on compressing PDFs for SSC forms, resizing passport photos to 50KB, converting images, calculating CGPA, and more. Learn with ExamTools.in."
+        keywords="how to compress pdf for ssc form, resize passport photo to 50kb guide, cgpa to percentage guide, remove background from photo free, exam form preparation tips india"
         url="https://examtools.in/blog"
       />
       {/* Header */}

@@ -48,8 +48,7 @@ export default function CompressPdf() {
       } else {
         setSuccess('Your PDF has been compressed successfully! Your files are processed securely in your browser. No upload required.');
       }
-    } catch (err) {
-      console.error(err);
+    } catch {
       setError('Failed to compress this PDF. It may be password-protected or corrupted.');
     } finally {
       setLoading(false);

@@ -72,8 +72,7 @@ export default function ImageConverter() {
       setConvertedSize(sizeInBytes);
       setConvertedExt(extension);
       setSuccess('Your image has been converted successfully! Your files are processed securely in your browser. No upload required.');
-    } catch (err) {
-      console.error(err);
+    } catch {
       setError('Failed to convert image. The image might be too large or corrupted.');
     } finally {
       setLoading(false);

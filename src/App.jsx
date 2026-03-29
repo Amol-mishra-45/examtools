@@ -1,3 +1,8 @@
+/**
+ * © 2026 Amol Mishra (CodeCraftAmol). All rights reserved.
+ * Website: https://examtools.in
+ * Unauthorized copying or reuse of this file is strictly prohibited.
+ */
 import { Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
@@ -25,6 +30,7 @@ const ToolDetail = lazy(() => import('./pages/ToolDetail'));
 const Blog = lazy(() => import('./pages/Blog'));
 const BlogDetail = lazy(() => import('./pages/BlogDetail'));
 const About = lazy(() => import('./pages/About'));
+const Terms = lazy(() => import('./pages/Terms'));
 
 // Loading Fallback
 const PageLoader = () => (
@@ -51,6 +57,7 @@ function App() {
                 <Route path="/blog" element={<Blog />} />
                 <Route path="/blog/:id" element={<BlogDetail />} />
                 <Route path="/about" element={<About />} />
+                <Route path="/terms" element={<Terms />} />
                 
                 {/* Fallback route */}
                 <Route

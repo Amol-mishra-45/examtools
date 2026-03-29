@@ -104,8 +104,7 @@ export default function TextToPdf() {
       
       setGeneratedPdf(optimizedFile);
       setSuccess('Your PDF has been successfully generated! Your text was processed entirely securely in your browser. No data was uploaded anywhere.');
-    } catch (err) {
-      console.error(err);
+    } catch {
       setError('Failed to generate PDF. The text input might contain unsupported special characters.');
     } finally {
       setLoading(false);

@@ -1,4 +1,19 @@
+# ============================================================
+# robots.txt for ExamTools.in
+# https://examtools.in
+# ============================================================
+
+# Allow all search engine crawlers
 User-agent: *
 Allow: /
 
+# Block access to source files and build artifacts
+Disallow: /src/
+Disallow: /.env
+Disallow: /node_modules/
+
+# Sitemap location
 Sitemap: https://examtools.in/sitemap.xml
+
+# Crawl-delay hint (optional — Googlebot ignores this, but Bing respects it)
+# Crawl-delay: 10
