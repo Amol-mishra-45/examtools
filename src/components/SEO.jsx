@@ -1,6 +1,6 @@
 import { Helmet } from 'react-helmet-async';
 
-const SITE_NAME = 'ExamTools.in';
+const SITE_NAME = 'ExamTools';
 const SITE_URL = 'https://examtools.in';
 const DEFAULT_OG_IMAGE = `${SITE_URL}/og-image.png`;
 
@@ -8,7 +8,7 @@ const DEFAULT_DESCRIPTION =
   'Free online tools for Indian students: resize passport photo to 50KB, compress PDF for SSC forms, merge PDFs, convert images, and calculate CGPA. 100% free, secure, no upload required.';
 
 const DEFAULT_KEYWORDS =
-  'resize image to 50kb, compress pdf for ssc form, passport photo resize online, merge pdf free, cgpa to percentage calculator, exam tools india, free student tools online';
+  'resize image to 50kb, compress pdf for ssc form, passport photo resize online, merge pdf free, cgpa to percentage calculator india, resize signature to 20kb, convert text to pdf, free word counter online, remove image background, free student tools online';
 
 /**
  * SEO Component — Renders dynamic <head> tags via react-helmet-async.
@@ -57,7 +57,7 @@ export default function SEO({
       <meta property="og:title" content={fullTitle} />
       <meta property="og:description" content={description} />
       <meta property="og:image" content={image} />
-      <meta property="og:image:alt" content={`${title || SITE_NAME} — ExamTools.in`} />
+      <meta property="og:image:alt" content={`${title || SITE_NAME} — ExamTools`} />
       <meta property="og:locale" content="en_IN" />
       {articleDate && <meta property="article:published_time" content={articleDate} />}
 

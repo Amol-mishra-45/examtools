@@ -16,7 +16,7 @@ export default function Home() {
   return (
     <main className="bg-[#f8fafc] dark:bg-slate-900 min-h-screen pb-16 transition-colors duration-300">
       <SEO
-        title="ExamTools.in – Free Exam Preparation Tools for Indian Students"
+        title="ExamTools – Free Exam Preparation Tools for Indian Students"
         description="Free online tools for Indian students: resize passport photo to 50KB, compress PDF for SSC forms, merge PDFs, remove image background, and calculate CGPA. 100% free, no upload required."
         keywords="resize image to 50kb, compress pdf for ssc form, passport photo resize online free, merge pdf free india, cgpa to percentage calculator, exam tools for students india, free online student tools"
         url="https://examtools.in"
@@ -25,7 +25,7 @@ export default function Home() {
           '@type': 'WebPage',
           '@id': 'https://examtools.in/#webpage',
           url: 'https://examtools.in/',
-          name: 'ExamTools.in – Free Exam Preparation Tools for Indian Students',
+          name: 'ExamTools – Free Exam Preparation Tools for Indian Students',
           description: 'Free online tools for Indian students: resize passport photo, compress PDF, merge PDFs, remove background, and calculate CGPA.',
           breadcrumb: { '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Home', item: 'https://examtools.in/' }] },
           isPartOf: { '@id': 'https://examtools.in/#website' },
